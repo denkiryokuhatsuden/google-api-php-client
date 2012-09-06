@@ -30,8 +30,9 @@ use GoogleApi\Config;
 class FileCache extends Cache {
   private $path;
 
-  public function __construct() {
-    $this->path = Config::get('ioFileCache_directory');
+  public function __construct($config) {
+  	parent::__construct($config);
+    $this->path = $this->apiConfig->get('ioFileCache_directory');
   }
 
   private function isLocked($storageFile) {

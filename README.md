@@ -4,21 +4,27 @@ Google APIs Client Library for PHP
 ## Description
 The Google API Client Library enables you to work with Google APIs such as Buzz, Moderator, Tasks, or Latitude on your server.
 
+Warning: Currently only the books service is working (only volumes service without authentication tested)
+
 This is a forked version from:
-* http://code.google.com/p/google-api-php-client/
+* https://github.com/evert/google-api-php-client
 
 Current version is hosted here:
-* https://github.com/evert/google-api-php-client
+* https://github.com/gh0zt/google-api-php-client
 
 ## Fork information
 
-This project was forked to modernize the google api codebase a little bit.
-The following changes have been made:
+This project was forked made the library compatible with modern techniques like DI and to
+get rid of the global like static config object:
 
-* Gotted rid of all require() statements. An autoloader is now required
-* Renamed all classes. Everything is now in a GoogleApi namespace.
-* Added composer package information (todo)
-* Gotted rid of automatically executing code.
+* Replaced the Config class with a non static version which is constructor injected into the classes which use the configuration object.
+* Refactored the Books Service to one class per file
+* Specified fully qualified classnames for factory keys 
+
+TODO:
+* Refactore all other services
+* Replace all static calls to Config
+* Replace config usage in Models which should not be config aware. (e.g GoogleApi\Service\Model)
 
 The existing documentation applies, just keep in mind that instead of class
 like `apiHttpRequest`, you must now use `\GoogleApi\Io\HttpRequest`.
@@ -56,8 +62,9 @@ Supported sample applications:
 <?php
 include 'vendor/.composer/autoload.php';
 
-$client = new \GoogleApi\Client();
-$service = new \GoogleApi\Books\Service($client);
+$client = new \GoogleApi\Config();
+$client = new \GoogleApi\Client($config);
+$service = new \GoogleApi\Contrib\Books\Service($client);
 
 $optParams = array('filter' => 'free-ebooks');
 $results = $service->volumes->listVolumes('Henry David Thoreau', $optParams);

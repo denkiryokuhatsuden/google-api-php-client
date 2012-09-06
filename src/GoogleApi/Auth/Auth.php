@@ -24,6 +24,14 @@ use GoogleApi\Io\HttpRequest;
  *
  */
 abstract class Auth {
+
+	protected $apiConfig = null;
+	
+	public function __construct($config)
+	{
+		$this->apiConfig = $config;
+	}	
+	
   abstract public function authenticate($service);
   abstract public function sign(HttpRequest $request);
   abstract public function createAuthUrl($scope);
@@ -33,4 +41,5 @@ abstract class Auth {
   abstract public function setDeveloperKey($developerKey);
   abstract public function refreshToken($refreshToken);
   abstract public function revokeToken();
+
 }

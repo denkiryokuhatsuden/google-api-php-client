@@ -23,6 +23,14 @@ namespace GoogleApi\Cache;
  */
 abstract class Cache {
 
+	protected $apiConfig = null;
+	
+	public function __construct($config)
+	{
+		$this->apiConfig = $config;
+	}
+	
+	
   /**
    * Retrieves the data for the given key, or false if they
    * key is unknown or expired

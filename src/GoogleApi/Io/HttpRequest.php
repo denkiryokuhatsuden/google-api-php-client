@@ -47,17 +47,30 @@ class HttpRequest {
   protected $responseBody;
   
   public $accessKey;
+  
+  protected $apiConfig = null;
 
-  public function __construct($url, $method = 'GET', $headers = array(), $postBody = null) {
+  /**
+   * @param unknown_type $url
+   * @param unknown_type $method
+   * @param unknown_type $headers
+   * @param unknown_type $postBody
+   * @param \GoogleApi\Config $config
+   * 
+   * @todo HttpRequest should not be config aware
+   */
+  public function __construct($url, $method = 'GET', $headers = array(), $postBody = null, \GoogleApi\Config $config) {
+  	$this->apiConfig = $config;
+  	
     $this->setUrl($url);
     $this->setRequestMethod($method);
     $this->setRequestHeaders($headers);
     $this->setPostBody($postBody);
-
-    if (!Config::has('application_name')) {
+    
+    if (! $this->apiConfig->has('application_name')) {
       $this->userAgent = self::USER_AGENT_SUFFIX;
     } else {
-      $this->userAgent = Config::get('application_name') . " " . self::USER_AGENT_SUFFIX;
+      $this->userAgent = $this->apiConfig->get('application_name') . " " . self::USER_AGENT_SUFFIX;
     }
   }
 
@@ -195,7 +208,7 @@ class HttpRequest {
     if (substr($url, 0, 4) == 'http') {
       $this->url = $url;
     } else {
-      $this->url = Config::get('basePath') . $url;
+      $this->url = $this->apiConfig->get('basePath') . $url;
     }
   }
 

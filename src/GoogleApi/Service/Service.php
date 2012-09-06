@@ -16,8 +16,20 @@
  */
 namespace GoogleApi\Service;
 
-class Service {
+abstract class Service {
   public $version;
   public $restBasePath;
   public $resource;
+  
+  protected $client = null;
+  
+  public function __construct($client)
+  {
+  	$this->client = $client;
+  }
+  
+  public function getClient()
+  {
+  	return $this->client;
+  }
 }

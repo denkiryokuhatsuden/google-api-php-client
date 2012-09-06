@@ -53,31 +53,31 @@ class OAuth2 extends Auth {
    * Instantiates the class, but does not initiate the login flow, leaving it
    * to the discretion of the caller (which is done by calling authenticate()).
    */
-  public function __construct() {
-    $apiConfig = Config::getAll();
+  public function __construct($config) {
+    parent::__construct($config);
     
-    if (! empty($apiConfig['developer_key'])) {
-      $this->developerKey = $apiConfig['developer_key'];
+    if (! $this->apiConfig->has('developer_key')) {
+      $this->developerKey = $this->apiConfig->get('developer_key');
     }
 
-    if (! empty($apiConfig['oauth2_client_id'])) {
-      $this->clientId = $apiConfig['oauth2_client_id'];
+    if (! $this->apiConfig->has('oauth2_client_id')) {
+      $this->clientId = $this->apiConfig->get('oauth2_client_id');
     }
 
-    if (! empty($apiConfig['oauth2_client_secret'])) {
-      $this->clientSecret = $apiConfig['oauth2_client_secret'];
+    if (! $this->apiConfig->has('oauth2_client_secret')) {
+      $this->clientSecret = $this->apiConfig->get('oauth2_client_secret');
     }
 
-    if (! empty($apiConfig['oauth2_redirect_uri'])) {
-      $this->redirectUri = $apiConfig['oauth2_redirect_uri'];
+    if (! $this->apiConfig->has('oauth2_redirect_uri')) {
+      $this->redirectUri = $this->apiConfig->get('oauth2_redirect_uri');
     }
     
-    if (! empty($apiConfig['oauth2_access_type'])) {
-      $this->accessType = $apiConfig['oauth2_access_type'];
+    if (! $this->apiConfig->has('oauth2_access_type')) {
+      $this->accessType = $this->apiConfig->get('oauth2_access_type');
     }
 
-    if (! empty($apiConfig['oauth2_approval_prompt'])) {
-      $this->approvalPrompt = $apiConfig['oauth2_approval_prompt'];
+    if (! $this->apiConfig->has('oauth2_approval_prompt')) {
+      $this->approvalPrompt = $this->apiConfig->get('oauth2_approval_prompt');
     }
   }
 

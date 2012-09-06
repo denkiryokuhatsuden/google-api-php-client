@@ -46,7 +46,7 @@ class Model {
 
       $keyTypeName = "__$key" . 'Type';
       $keyDataType = "__$key" . 'DataType';
-      if ($this->useObjects() && property_exists($this, $keyTypeName)) {
+      if (/*$this->useObjects() && */property_exists($this, $keyTypeName)) { // TODO: Model should not be COnfig aware
         if ($this->isAssociativeArray($val)) {
           if (isset($this->$keyDataType) && 'map' == $this->$keyDataType) {
             foreach($val as $arrayKey => $arrayItem) {

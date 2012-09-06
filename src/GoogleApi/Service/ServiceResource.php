@@ -30,7 +30,7 @@ use GoogleApi\Config;
  * @author Chirag Shah <chirags@google.com>
  *
  */
-class ServiceResource {
+abstract class ServiceResource {
   // Valid query parameters that work, but don't appear in discovery.
   private $stackParameters = array(
       'alt' => array('type' => 'string', 'location' => 'query'),
@@ -158,7 +158,7 @@ class ServiceResource {
 
     $url = REST::createRequestUri($restBasePath, $method['path'], $parameters);
 
-    $httpRequest = new HttpRequest($url, $method['httpMethod'], null, $postBody);
+    $httpRequest = new HttpRequest($url, $method['httpMethod'], null, $postBody, $this->service->getClient()->getConfig());
     if ($postBody) {
       $contentTypeHeader = array();
       if (isset($contentType) && $contentType) {
@@ -185,7 +185,7 @@ class ServiceResource {
   }
 
   protected function useObjects() {
-    return Config::get('use_objects', false);
+  	return $this->service->getClient()->getConfig()->get('use_objects', false);
   }
 
   protected function stripNull(&$o) {

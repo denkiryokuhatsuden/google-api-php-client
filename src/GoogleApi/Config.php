@@ -25,17 +25,13 @@ namespace GoogleApi;
  *
  */
 class Config {
-  protected static $apiConfig = array();
+  protected $apiConfig = array();
 
   /**
-   * Initializes $apiConfig,
-   * Php can't parse non-trivial expressions in data-members initializers, therefore a workaround is needed.
-   * This method will be called to initialize $apiConfig with the default values.
-   *
-   * @static
+   * Initializes $apiConfig
    */
-  static function init() {
-    self::$apiConfig = array(
+  public  function __construct($config = array()) {
+    $this->apiConfig = array(
       // True if objects should be returned by the service classes.
       // False if associative arrays should be returned (default behavior).
       'use_objects' => false,
@@ -109,50 +105,52 @@ class Config {
         'urlshortener' => array('scope' => 'https://www.googleapis.com/auth/urlshortener')
       )
     );
+    
+    if(! empty($config)) {
+    	$this->apiConfig = array_merge($this->apiConfig, $config);
+    }
   }
 
 
   /**
    * Returns an array which contains all of the variables that were declared.
-   * @static
+   * 
    * @return array
    */
-  public static function getAll() {
-    return self::$apiConfig;
+  public function getAll() {
+    return $this->apiConfig;
   }
 
   /**
    * Returns the value of the wanted variable, If it doesn't exist $default will be returned.
    *
-   * @static
    * @param $variable
    * @param null $default
    * @return string|array
    */
-  public static function get($variable, $default = null) {
-    return isset(self::$apiConfig[$variable]) ? self::$apiConfig[$variable] : $default;
+  public function get($variable, $default = null) {
+    return isset($this->apiConfig[$variable]) ? $this->apiConfig[$variable] : $default;
   }
 
   /**
    * Checks whether a variable exists
-   * @static
+   *
    * @param $variable
    * @return bool
    */
-  public static function has($variable) {
-    return isset(self::$apiConfig[$variable]);
+  public function has($variable) {
+    return isset($this->apiConfig[$variable]);
   }
 
   /**
    * Sets the value of the wanted variable
-   * @static
+   * 
    * @param $variable
    * @param $value
    */
-  public static function set($variable, $value)
+  public function set($variable, $value)
   {
-    self::$apiConfig[$variable] = $value;
+    $this->apiConfig[$variable] = $value;
   }
 
 }
-Config::init(); // Workaround to initialize the static data-member
