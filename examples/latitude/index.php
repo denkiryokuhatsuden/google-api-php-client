@@ -58,7 +58,7 @@ if ($client->getAccessToken()) {
 <body>
 <header><h1>Google Latitude Sample App</h1></header>
 <div class="box">
-  <?php if(isset($currentLocation)): ?>
+  <?php if (isset($currentLocation)): ?>
     <div class="currentLocation">
       <pre><?php var_dump($currentLocation); ?></pre>
     </div>
@@ -71,7 +71,7 @@ if ($client->getAccessToken()) {
   <?php endif ?>
 
   <?php
-    if(isset($authUrl)) {
+    if (isset($authUrl)) {
       print "<a class='login' href='$authUrl'>Connect Me!</a>";
     } else {
      print "<a class='logout' href='?logout'>Logout</a>";

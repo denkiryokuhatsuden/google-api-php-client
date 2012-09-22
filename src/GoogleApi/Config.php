@@ -106,8 +106,8 @@ class Config {
       )
     );
     
-    if(! empty($config)) {
-    	$this->apiConfig = array_merge($this->apiConfig, $config);
+    if (! empty($config)) {
+        $this->apiConfig = array_merge($this->apiConfig, $config);
     }
   }
 

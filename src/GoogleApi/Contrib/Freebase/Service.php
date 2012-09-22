@@ -32,8 +32,8 @@ class Service extends AbstractService
    */
   public function __construct(Client $client)
   {
-  	parent::__construct($client);
-  	
+      parent::__construct($client);
+      
     $this->rpcPath = '/rpc';
     $this->restBasePath = '/freebase/v1/';
     $this->version = 'v1';

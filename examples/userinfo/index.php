@@ -64,11 +64,11 @@ if ($client->getAccessToken()) {
 <head><meta charset="utf-8"></head>
 <body>
 <header><h1>Google UserInfo Sample App</h1></header>
-<?php if(isset($personMarkup)): ?>
+<?php if (isset($personMarkup)): ?>
 <?php print $personMarkup ?>
 <?php endif ?>
 <?php
-  if(isset($authUrl)) {
+  if (isset($authUrl)) {
     print "<a class='login' href='$authUrl'>Connect Me!</a>";
   } else {
    print "<a class='logout' href='?logout'>Logout</a>";

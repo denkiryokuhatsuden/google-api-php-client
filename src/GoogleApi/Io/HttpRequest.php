@@ -60,8 +60,8 @@ class HttpRequest {
    * @todo HttpRequest should not be config aware
    */
   public function __construct($url, $method = 'GET', $headers = array(), $postBody = null, \GoogleApi\Config $config) {
-  	$this->apiConfig = $config;
-  	
+      $this->apiConfig = $config;
+      
     $this->setUrl($url);
     $this->setRequestMethod($method);
     $this->setRequestHeaders($headers);
@@ -291,7 +291,7 @@ class HttpRequest {
    */
   public function toBatchString($id) {
     $str = '';
-    foreach($this->batchHeaders as $key => $val) {
+    foreach ($this->batchHeaders as $key => $val) {
       $str .= $key . ': ' . $val . "\n";
     }
 
@@ -300,7 +300,7 @@ class HttpRequest {
 
     $path = parse_url($this->getUrl(), PHP_URL_PATH);
     $str .= $this->getRequestMethod() . ' ' . $path . " HTTP/1.1\n";
-    foreach($this->getRequestHeaders() as $key => $val) {
+    foreach ($this->getRequestHeaders() as $key => $val) {
       $str .= $key . ': ' . $val . "\n";
     }
 

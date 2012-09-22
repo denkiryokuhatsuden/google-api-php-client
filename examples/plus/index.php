@@ -56,7 +56,7 @@ if ($client->getAccessToken()) {
   $optParams = array('maxResults' => 100);
   $activities = $plus->activities->listActivities('me', 'public', $optParams);
   $activityMarkup = '';
-  foreach($activities['items'] as $activity) {
+  foreach ($activities['items'] as $activity) {
     // These fields are currently filtered through the PHP sanitize filters.
     // See http://www.php.net/manual/en/filter.filters.sanitize.php
     $url = filter_var($activity['url'], FILTER_VALIDATE_URL);
@@ -81,16 +81,16 @@ if ($client->getAccessToken()) {
 <header><h1>Google+ Sample App</h1></header>
 <div class="box">
 
-<?php if(isset($personMarkup)): ?>
+<?php if (isset($personMarkup)): ?>
 <div class="me"><?php print $personMarkup ?></div>
 <?php endif ?>
 
-<?php if(isset($activityMarkup)): ?>
+<?php if (isset($activityMarkup)): ?>
 <div class="activities">Your Activities: <?php print $activityMarkup ?></div>
 <?php endif ?>
 
 <?php
-  if(isset($authUrl)) {
+  if (isset($authUrl)) {
     print "<a class='login' href='$authUrl'>Connect Me!</a>";
   } else {
    print "<a class='logout' href='?logout'>Logout</a>";

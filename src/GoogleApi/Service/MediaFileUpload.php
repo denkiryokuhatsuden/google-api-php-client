@@ -62,7 +62,7 @@ class MediaFileUpload {
     $this->data = $data;
     $this->size = strlen($this->data);
     $this->resumable = $resumable;
-    if(!$chunkSize) {
+    if (!$chunkSize) {
       $this->chunkSize = 256 * 1024;
     }
 

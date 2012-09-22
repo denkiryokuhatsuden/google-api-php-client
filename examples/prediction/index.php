@@ -71,7 +71,7 @@ if ($client->getAccessToken()) {
 <!--<div>Status: <?php print $status?></div>-->
 
 <?php
-  if(isset($authUrl)) {
+  if (isset($authUrl)) {
     print "<a class='login' href='$authUrl'>Login</a>";
     $result = "";
     print("</div>");

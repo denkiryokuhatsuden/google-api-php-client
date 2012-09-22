@@ -45,7 +45,7 @@ if ($client->getAccessToken()) {
     'maxResults' => '20',
   );
   $results = $plus->activities->search('Google+ API', $params);
-  foreach($results['items'] as $result) {
+  foreach ($results['items'] as $result) {
     print "Search Result: <pre>{$result['object']['content']}</pre>\n";
   }
 

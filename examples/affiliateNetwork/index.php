@@ -58,7 +58,7 @@ if ($client->getAccessToken()) {
 ?>
 
 <?php
-  if(isset($authUrl)) {
+  if (isset($authUrl)) {
     print "<a class='login' href='$authUrl'>Connect Me!</a>";
   } else {
    print "<a class='logout' href='?logout'>Logout</a>";

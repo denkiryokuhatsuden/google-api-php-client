@@ -82,10 +82,10 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testAccountsAdUnitsList() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
           ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $adUnits = $this->adsense->accounts_adunits->listAccountsAdunits
             ($account['id'], $adClient['id']);
         $this->checkAdUnitsCollection($adUnits);
@@ -100,13 +100,13 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testAccountsAdUnitsGet() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
           ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $adUnits = $this->adsense->accounts_adunits->listAccountsAdunits
             ($account['id'], $adClient['id']);
-        if(array_key_exists('items', $adUnits)) {
+        if (array_key_exists('items', $adUnits)) {
           $adUnit = $this->getRandomElementFromArray($adUnits['items']);
           $this->checkAdUnitElement($adUnit);
           break 2;
@@ -121,10 +121,10 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testAccountsCustomChannelsList() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
       ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $customChannels = $this->adsense->accounts_customchannels
             ->listAccountsCustomchannels($account['id'], $adClient['id']);
         $this->checkCustomChannelsCollection($customChannels);
@@ -139,13 +139,13 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testAccountsCustomChannelsGet() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
       ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $customChannels = $this->adsense->accounts_customchannels
             ->listAccountsCustomchannels($account['id'], $adClient['id']);
-        if(array_key_exists('items', $customChannels)) {
+        if (array_key_exists('items', $customChannels)) {
           $customChannel = $this->getRandomElementFromArray
               ($customChannels['items']);
           $this->checkCustomChannelElement($customChannel);
@@ -161,10 +161,10 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testAccountsUrlChannelsList() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
       ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $urlChannels = $this->adsense->accounts_urlchannels
             ->listAccountsUrlchannels($account['id'], $adClient['id']);
         $this->checkUrlChannelsCollection($urlChannels);
@@ -180,14 +180,14 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testAccountsAdUnitsCustomChannelsList() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
       ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $adUnits = $this->adsense->accounts_adunits
             ->listAccountsAdunits($account['id'], $adClient['id']);
-        if(array_key_exists('items', $adUnits)) {
-          foreach($adUnits['items'] as $adUnit) {
+        if (array_key_exists('items', $adUnits)) {
+          foreach ($adUnits['items'] as $adUnit) {
             $customChannels = $this->adsense->accounts_adunits_customchannels
                 ->listAccountsAdunitsCustomchannels
                     ($account['id'], $adClient['id'], $adUnit['id']);
@@ -207,14 +207,14 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testAccountsCustomChannelsAdUnitsList() {
     $accounts = $this->adsense->accounts->listAccounts();
-    foreach($accounts['items'] as $account) {
+    foreach ($accounts['items'] as $account) {
       $adClients = $this->adsense->accounts_adclients->listAccountsAdclients
       ($account['id']);
-      foreach($adClients['items'] as $adClient) {
+      foreach ($adClients['items'] as $adClient) {
         $customChannels = $this->adsense->accounts_customchannels
         ->listAccountsCustomchannels($account['id'], $adClient['id']);
-        if(array_key_exists('items', $customChannels)) {
-          foreach($customChannels['items'] as $customChannel) {
+        if (array_key_exists('items', $customChannels)) {
+          foreach ($customChannels['items'] as $customChannel) {
             $adUnits = $this->adsense->accounts_customchannels_adunits
                 ->listAccountsCustomchannelsAdunits
                     ($account['id'], $adClient['id'], $customChannel['id']);
@@ -237,7 +237,7 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testAdUnitsList() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $adUnits = $this->adsense->adunits->listAdunits($adClient['id']);
       $this->checkAdUnitsCollection($adUnits);
     }
@@ -248,9 +248,9 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testAdUnitsGet() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $adUnits = $this->adsense->adunits->listAdunits($adClient['id']);
-      if(array_key_exists('items', $adUnits)) {
+      if (array_key_exists('items', $adUnits)) {
         $adUnit = $this->getRandomElementFromArray($adUnits['items']);
         $this->checkAdUnitElement($adUnit);
         break 1;
@@ -264,10 +264,10 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testAdUnitsCustomChannelsList() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $adUnits = $this->adsense->adunits->listAdunits($adClient['id']);
-      if(array_key_exists('items', $adUnits)) {
-        foreach($adUnits['items'] as $adUnit) {
+      if (array_key_exists('items', $adUnits)) {
+        foreach ($adUnits['items'] as $adUnit) {
           $customChannels = $this->adsense->adunits_customchannels
               ->listAdunitsCustomchannels($adClient['id'], $adUnit['id']);
           $this->checkCustomChannelsCollection($customChannels);
@@ -282,7 +282,7 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testCustomChannelsList() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $customChannels = $this->adsense->customchannels->listCustomchannels
           ($adClient['id']);
       $this->checkCustomChannelsCollection($customChannels);
@@ -294,10 +294,10 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testCustomChannelsGet() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $customChannels = $this->adsense->customchannels->listCustomchannels
           ($adClient['id']);
-      if(array_key_exists('items', $customChannels)) {
+      if (array_key_exists('items', $customChannels)) {
         $customChannel = $this->getRandomElementFromArray
             ($customChannels['items']) ;
         $this->checkCustomChannelElement($customChannel);
@@ -312,11 +312,11 @@ class AdSenseManagementTest extends BaseTest {
   */
   public function testCustomChannelsAdUnitsList() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $customChannels = $this->adsense->customchannels->listCustomchannels
           ($adClient['id']);
-      if(array_key_exists('items', $customChannels)) {
-        foreach($customChannels['items'] as $customChannel) {
+      if (array_key_exists('items', $customChannels)) {
+        foreach ($customChannels['items'] as $customChannel) {
           $adUnits = $this->adsense->customchannels_adunits
               ->listCustomchannelsAdunits
                   ($adClient['id'], $customChannel['id']);
@@ -332,7 +332,7 @@ class AdSenseManagementTest extends BaseTest {
    */
   public function testUrlChannelsList() {
     $adClients = $this->adsense->adclients->listAdclients();
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $urlChannels = $this->adsense->urlchannels->listUrlchannels
           ($adClient['id']);
       $this->checkUrlChannelsCollection($urlChannels);
@@ -357,7 +357,7 @@ class AdSenseManagementTest extends BaseTest {
   private function checkAdClientsCollection($adClients) {
     $this->assertArrayHasKey('kind', $adClients);
     $this->assertEquals($adClients['kind'], 'adsense#adClients');
-    foreach($adClients['items'] as $adClient) {
+    foreach ($adClients['items'] as $adClient) {
       $this->assertArrayHasKey('id', $adClient);
       $this->assertArrayHasKey('kind', $adClient);
       $this->assertArrayHasKey('productCode', $adClient);
@@ -368,8 +368,8 @@ class AdSenseManagementTest extends BaseTest {
   private function checkAdUnitsCollection($adUnits) {
     $this->assertArrayHasKey('kind', $adUnits);
     $this->assertEquals($adUnits['kind'], 'adsense#adUnits');
-    if(array_key_exists('items', $adUnits)) {
-      foreach($adUnits['items'] as $adUnit) {
+    if (array_key_exists('items', $adUnits)) {
+      foreach ($adUnits['items'] as $adUnit) {
         $this->checkAdUnitElement($adUnit);
       }
     }
@@ -386,8 +386,8 @@ class AdSenseManagementTest extends BaseTest {
   private function checkCustomChannelsCollection($customChannels) {
     $this->assertArrayHasKey('kind', $customChannels);
     $this->assertEquals($customChannels['kind'], 'adsense#customChannels');
-    if(array_key_exists('items', $customChannels)) {
-      foreach($customChannels['items'] as $customChannel) {
+    if (array_key_exists('items', $customChannels)) {
+      foreach ($customChannels['items'] as $customChannel) {
         $this->checkCustomChannelElement($customChannel);
       }
     }
@@ -403,8 +403,8 @@ class AdSenseManagementTest extends BaseTest {
   private function checkUrlChannelsCollection($urlChannels) {
     $this->assertArrayHasKey('kind', $urlChannels);
     $this->assertEquals($urlChannels['kind'], 'adsense#urlChannels');
-    if(array_key_exists('items', $urlChannels)) {
-      foreach($urlChannels['items'] as $urlChannel) {
+    if (array_key_exists('items', $urlChannels)) {
+      foreach ($urlChannels['items'] as $urlChannel) {
         $this->assertArrayHasKey('kind', $urlChannel);
         $this->assertArrayHasKey('id', $urlChannel);
         $this->assertArrayHasKey('urlPattern', $urlChannel);
@@ -426,12 +426,12 @@ class AdSenseManagementTest extends BaseTest {
     $this->assertEquals($report['kind'], 'adsense#report');
     $this->assertArrayHasKey('totalMatchedRows', $report);
     $this->assertArrayHasKey('headers', $report);
-    foreach($report['headers'] as $header) {
+    foreach ($report['headers'] as $header) {
       $this->assertArrayHasKey('name', $header);
       $this->assertArrayHasKey('type', $header);
     }
-    if(array_key_exists('items', $report)) {
-      foreach($reportRows['items'] as $row) {
+    if (array_key_exists('items', $report)) {
+      foreach ($reportRows['items'] as $row) {
         $this->assertCount(4, $row);
       }
     }

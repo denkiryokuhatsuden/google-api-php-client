@@ -140,7 +140,7 @@ class CurlIO implements IO {
         );
 
         $endToEnd = array();
-        foreach($hopByHop as $key) {
+        foreach ($hopByHop as $key) {
           if (isset($responseHeaders[$key])) {
             $endToEnd[$key] = $responseHeaders[$key];
           }

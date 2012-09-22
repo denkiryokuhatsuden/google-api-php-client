@@ -144,7 +144,7 @@ class ManagementApiReference {
       $html .= '<p>No Accounts Found</p>';
 
     } else {
-      foreach($items as &$account) {
+      foreach ($items as &$account) {
         $html .= <<<HTML
 <hr>
 <pre>

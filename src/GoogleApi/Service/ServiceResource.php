@@ -186,7 +186,7 @@ abstract class ServiceResource {
   }
 
   protected function useObjects() {
-  	return $this->service->getClient()->getConfig()->get('use_objects', false);
+      return $this->service->getClient()->getConfig()->get('use_objects', false);
   }
 
   protected function stripNull(&$o) {

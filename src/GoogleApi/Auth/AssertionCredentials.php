@@ -23,15 +23,15 @@ use GoogleApi\Service\Utils;
  *
  * @author Chirag Shah <chirags@google.com>
  */
-class AssertionCredentials {
+class AssertionCredentials
+{
+    const MAX_TOKEN_LIFETIME_SECS = 3600;
 
-  const MAX_TOKEN_LIFETIME_SECS = 3600;
-
-  public $serviceAccountName;
-  public $scopes;
-  public $privateKey;
-  public $privateKeyPassword;
-  public $assertionType;
+    public $serviceAccountName;
+    public $scopes;
+    public $privateKey;
+    public $privateKeyPassword;
+    public $assertionType;
 
   /**
    * @param $serviceAccountName
@@ -53,6 +53,10 @@ class AssertionCredentials {
     $this->assertionType = $assertionType;
   }
 
+  /**
+   * 
+   * @return string
+   */
   public function generateAssertion() {
     $now = time();
 

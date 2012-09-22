@@ -50,7 +50,7 @@ class Model {
       if (/*$this->useObjects() && */property_exists($this, $keyTypeName)) { // TODO: Model should not be COnfig aware
         if ($this->isAssociativeArray($val)) {
           if (isset($this->$keyDataType) && 'map' == $this->$keyDataType) {
-            foreach($val as $arrayKey => $arrayItem) {
+            foreach ($val as $arrayKey => $arrayItem) {
               $val[$arrayKey] = $this->createObjectFromName($keyTypeName, $arrayItem);
             }
             $this->$key = $val;
@@ -78,7 +78,7 @@ class Model {
       return false;
     }
     $keys = array_keys($array);
-    foreach($keys as $key) {
+    foreach ($keys as $key) {
       if (is_string($key)) {
         return true;
       }

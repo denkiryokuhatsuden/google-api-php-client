@@ -49,20 +49,20 @@ class GetAllCustomChannelsForAdUnit extends BaseExample {
               'Custom channel with code "%s" and name "%s" was found.';
           $content[] = sprintf($mainFormat, $customChannel['code'],
               $customChannel['name']);
-          if($customChannel['targetingInfo']) {
+          if ($customChannel['targetingInfo']) {
             $targetingInfo = $customChannel['targetingInfo'];
-            if($targetingInfo['adsAppearOn']) {
+            if ($targetingInfo['adsAppearOn']) {
               $content[] = sprintf('Ads appear on: %s',
                   $targetingInfo['adsAppearOn']);
             }
-            if($targetingInfo['location']) {
+            if ($targetingInfo['location']) {
               $content[] = sprintf('Location: %s', $targetingInfo['location']);
             }
-            if($targetingInfo['description']) {
+            if ($targetingInfo['description']) {
               $content[] = sprintf('Description: %s',
                   $targetingInfo['description']);
             }
-            if($targetingInfo['siteLanguage']) {
+            if ($targetingInfo['siteLanguage']) {
               $content[] = sprintf('Site language: %s',
                   $targetingInfo['siteLanguage']);
             }

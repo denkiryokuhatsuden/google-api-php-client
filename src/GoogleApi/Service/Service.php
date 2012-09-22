@@ -26,11 +26,11 @@ abstract class Service
   
   public function __construct($client)
   {
-  	$this->client = $client;
+      $this->client = $client;
   }
   
   public function getClient()
   {
-  	return $this->client;
+      return $this->client;
   }
 }

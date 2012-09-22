@@ -11,21 +11,21 @@ use GoogleApi\Service\Model;
  */
 class Get extends Model
 {
-	public $result;
-	
-	/**
-	 * @param string $result
-	 */
-	public function setResult($result)
-	{
-		$this->result = $result;
-	}
-	
-	/**
-	 * @return string
-	 */
-	public function getResult()
-	{
-		return $this->result;
-	}
+    public $result;
+    
+    /**
+     * @param string $result
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 }

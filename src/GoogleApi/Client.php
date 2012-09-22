@@ -68,8 +68,8 @@ class Client {
   protected $apiConfig = null;
 
   public function __construct(\GoogleApi\Config $config) {
-  	$this->apiConfig = $config;
-  	
+      $this->apiConfig = $config;
+      
     $cacheClass = $this->apiConfig->get('cacheClass');
     self::$cache = new $cacheClass($config);
     $authClass = $this->apiConfig->get('authClass');
@@ -84,15 +84,15 @@ class Client {
    */
   public function getConfig()
   {
-  	return $this->apiConfig;
+      return $this->apiConfig;
   }
 
   /**
    * Add a service
    */
   public function addService($service, $version = false) {
-  	$configServices = $this->apiConfig->get('services');
-  	
+      $configServices = $this->apiConfig->get('services');
+      
     if ($this->authenticated) {
       throw new \GoogleApi\Exception('Cant add services after having authenticated');
     }
@@ -221,7 +221,7 @@ class Client {
    * @param string $applicationName
    */
   public function setApplicationName($applicationName) {
-  	$this->apiConfig->set('application_name', $applicationName);
+      $this->apiConfig->set('application_name', $applicationName);
   }
 
   /**
