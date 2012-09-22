@@ -16,17 +16,18 @@
  */
 session_start();
 
-require_once '../../src/apiClient.php';
-require_once '../../src/contrib/apiBooksService.php';
+require_once '../autoloader.php';
 
 // Include the boilerplate markup.
 include 'interface.html';
 
-$client = new apiClient();
+$config = new \GoogleApi\Config(array('use_objects' => false));
+
+$client = new \GoogleApi\Client($config);
 // Visit https://code.google.com/apis/console to generate your client's Developer Key.
 //$client->setDeveloperKey('insert_your_developer_key');
 $client->setApplicationName("Books_Example_App");
-$service = new apiBooksService($client);
+$service = new \GoogleApi\Contrib\Books\Service($client);
 
 /**
  * Echo the list of videos in the specified feed.
