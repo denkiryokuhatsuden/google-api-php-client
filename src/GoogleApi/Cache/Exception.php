@@ -1,5 +1,6 @@
 <?php
-/*
+
+/**
  * Copyright 2010 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +18,11 @@
 namespace GoogleApi\Cache;
 
 /**
- * The Google API Cache exception 
+ * The Google API Cache exception
  * http://code.google.com/p/google-api-php-client/
  *
  * @author Evert Pot (http://www.rooftopsolutions.nl/)
  */
-class Exception extends \GoogleApi\Exception {}
+class Exception extends \GoogleApi\Exception
+{
+}
