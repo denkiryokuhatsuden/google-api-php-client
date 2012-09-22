@@ -8,6 +8,7 @@ Warning: Currently only the following services are working
 * books service (only volumes service without authentication tested)
 * freebase
 * urlshortener
+* plus
 
 Based on:
 * https://github.com/evert/google-api-php-client
