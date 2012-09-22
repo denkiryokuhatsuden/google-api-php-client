@@ -65,7 +65,7 @@ class HttpRequest
      * @todo HttpRequest should not be config aware
      */
     public function __construct ($url, $method = 'GET', $headers = array(), $postBody = null, 
-            GoogleApi\Config $config)
+            \GoogleApi\Config $config)
     {
         $this->apiConfig = $config;
         
