@@ -7,8 +7,9 @@ The Google API Client Library enables you to work with Google APIs such as Buzz,
 Warning: Currently only the following services are working
 * books service (only volumes service without authentication tested)
 * freebase
+* urlshortener
 
-This is a forked version from:
+Based on:
 * https://github.com/evert/google-api-php-client
 
 Current version is hosted here:
