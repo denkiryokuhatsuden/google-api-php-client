@@ -7,7 +7,6 @@ use GoogleApi\Contrib\Books\Bookshelf;
 use GoogleApi\Contrib\Books\Bookshelves;
 use GoogleApi\Service\ServiceResource as AbstractServiceResource;
 
-
 /**
  * The "bookshelves" collection of methods.
  * Typical usage is:
@@ -16,9 +15,8 @@ use GoogleApi\Service\ServiceResource as AbstractServiceResource;
  *   $bookshelves = $booksService->bookshelves;
  *  </code>
  */
-class ServiceResource extends AbstractServiceResource {
-
-
+class ServiceResource extends AbstractServiceResource
+{
 	/**
 	 * Clears all volumes from a bookshelf. (bookshelves.clearVolumes)
 	 *

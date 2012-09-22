@@ -2,7 +2,8 @@
 
 namespace GoogleApi\Contrib\Books\Mylibrary\Bookshelves\Volumes;
 
-use GoogleApi\Contrib\Volumes;
+use GoogleApi\Contrib\Books\Volumes;
+use GoogleApi\Service\ServiceResource as AbstractServiceResource;
 
 /**
  * The "volumes" collection of methods.
@@ -12,7 +13,8 @@ use GoogleApi\Contrib\Volumes;
  *   $volumes = $booksService->volumes;
  *  </code>
  */
-class ServiceResource extends ServiceResource {
+class ServiceResource extends AbstractServiceResource
+{
 	/**
 	 * Gets volume information for volumes on a bookshelf. (volumes.list)
 	 *
@@ -28,7 +30,8 @@ class ServiceResource extends ServiceResource {
 	 * @opt_param string startIndex Index of the first element to return (starts at 0)
 	 * @return Volumes
 	 */
-	public function listMylibraryBookshelvesVolumes($optParams = array()) {
+	public function listMylibraryBookshelvesVolumes($optParams = array())
+	{
 		$params = array();
 		$params = array_merge($params, $optParams);
 		$data = $this->__call('list', array($params));
