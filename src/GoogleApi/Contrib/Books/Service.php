@@ -36,14 +36,15 @@ class Service extends AbstractService {
 	 *
 	 * @param Client Client
 	 */
-	public function __construct(Client $client) {
+	public function __construct(Client $client)
+	{
 		parent::__construct($client);
 		
 		$this->rpcPath = '/rpc';
 		$this->restBasePath = '/books/v1/';
 		$this->version = 'v1';
 		$this->serviceName = 'books';
-  
+
 		$client->addService($this->serviceName, $this->version); 
 		$this->bookshelves = new Bookshelves\ServiceResource($this, $this->serviceName, 'bookshelves', json_decode('{"methods": {"list": {"scopes": ["https://www.googleapis.com/auth/books"], "parameters": {"country": {"type": "string", "location": "query"}, "userId": {"required": true, "type": "string", "location": "path"}, "source": {"type": "string", "location": "query"}}, "id": "books.bookshelves.list", "httpMethod": "GET", "path": "users/{userId}/bookshelves", "response": {"$ref": "Bookshelves"}}, "get": {"scopes": ["https://www.googleapis.com/auth/books"], "parameters": {"country": {"type": "string", "location": "query"}, "userId": {"required": true, "type": "string", "location": "path"}, "shelf": {"required": true, "type": "string", "location": "path"}, "source": {"type": "string", "location": "query"}}, "id": "books.bookshelves.get", "httpMethod": "GET", "path": "users/{userId}/bookshelves/{shelf}", "response": {"$ref": "Bookshelf"}}}}', true));
 		$this->bookshelves_volumes = new Bookshelves\Volumes\ServiceResource($this, $this->serviceName, 'volumes', json_decode('{"methods": {"list": {"scopes": ["https://www.googleapis.com/auth/books"], "parameters": {"country": {"type": "string", "location": "query"}, "showPreorders": {"type": "boolean", "location": "query"}, "maxResults": {"format": "uint32", "minimum": "0", "type": "integer", "location": "query"}, "source": {"type": "string", "location": "query"}, "startIndex": {"format": "uint32", "minimum": "0", "type": "integer", "location": "query"}, "shelf": {"required": true, "type": "string", "location": "path"}, "userId": {"required": true, "type": "string", "location": "path"}}, "id": "books.bookshelves.volumes.list", "httpMethod": "GET", "path": "users/{userId}/bookshelves/{shelf}/volumes", "response": {"$ref": "Volumes"}}}}', true));
