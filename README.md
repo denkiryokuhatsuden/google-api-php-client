@@ -4,7 +4,9 @@ Google APIs Client Library for PHP
 ## Description
 The Google API Client Library enables you to work with Google APIs such as Buzz, Moderator, Tasks, or Latitude on your server.
 
-Warning: Currently only the books service is working (only volumes service without authentication tested)
+Warning: Currently only the following services are working
+* books service (only volumes service without authentication tested)
+* freebase
 
 This is a forked version from:
 * https://github.com/evert/google-api-php-client
