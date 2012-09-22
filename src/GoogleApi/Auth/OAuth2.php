@@ -108,15 +108,15 @@ class OAuth2 extends Auth
         if (isset($_GET['code'])) {
             // We got here from the redirect from a successful authorization
             // grant, fetch the access token
+            
             $request = Client::$io->makeRequest(
-                    new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), 
-                            array(
-                                    'code' => $_GET['code'],
-                                    'grant_type' => 'authorization_code',
-                                    'redirect_uri' => $this->redirectUri,
-                                    'client_id' => $this->clientId,
-                                    'client_secret' => $this->clientSecret
-                            )));
+                new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), array(
+                        'code' => $_GET['code'],
+                        'grant_type' => 'authorization_code',
+                        'redirect_uri' => $this->redirectUri,
+                        'client_id' => $this->clientId,
+                        'client_secret' => $this->clientSecret
+                ), $this->apiConfig));
             
             if ($request->getResponseHttpCode() == 200) {
                 $this->setAccessToken($request->getResponseBody());

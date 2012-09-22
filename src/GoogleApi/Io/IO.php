@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2010 Google Inc.
  *
@@ -21,19 +22,24 @@ namespace GoogleApi\Io;
  *
  * @author Chris Chabot <chabotc@google.com>
  */
-interface IO {
-  /**
-   * An utility function that first calls $this->auth->sign($request) and then executes makeRequest()
-   * on that signed request. Used for when a request should be authenticated
-   * @param HttpRequest $request
-   * @return HttpRequest $request
-   */
-  public function authenticatedRequest(HttpRequest $request);
+interface IO
+{
+    /**
+     * An utility function that first calls $this->auth->sign($request) and then
+     * executes makeRequest()
+     * on that signed request.
+     * Used for when a request should be authenticated
+     * 
+     * @param HttpRequest $request            
+     * @return HttpRequest $request
+     */
+    public function authenticatedRequest (HttpRequest $request);
 
-  /**
-   * Executes a apIHttpRequest and returns the resulting populated httpRequest
-   * @param HttpRequest $request
-   * @return HttpRequest $request
-   */
-  public function makeRequest(HttpRequest $request);
+    /**
+     * Executes a apIHttpRequest and returns the resulting populated httpRequest
+     * 
+     * @param HttpRequest $request            
+     * @return HttpRequest $request
+     */
+    public function makeRequest (HttpRequest $request);
 }
