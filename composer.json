@@ -1,15 +1,20 @@
 {
-    "name": "evert/google-api-php-client",
+    "name": "dag/google-api-php-client",
     "type": "library",
     "description": "Google API library for PHP",
     "keywords": ["google","gdata"],
-    "homepage": "https://github.com/evert/google-api-php-client",
+    "homepage": "https://github.com/gh0zt/google-api-php-client",
     "license": "Apache 2.0",
     "authors": [
         {
             "name": "Evert Pot",
             "email": "evert@rooftopsolutions.nl",
             "homepage": "http://www.rooftopsolutions.nl/"
+        },
+        {
+            "name": "Daniel Gratzl",
+            "email": "dag@dagsystems.de",
+            "homepage": "http://www.dagsystems.de"
         }
     ],
     "require": {
