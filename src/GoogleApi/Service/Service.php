@@ -16,7 +16,8 @@
  */
 namespace GoogleApi\Service;
 
-abstract class Service {
+abstract class Service
+{
   public $version;
   public $restBasePath;
   public $resource;

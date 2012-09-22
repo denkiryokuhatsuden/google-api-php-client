@@ -111,6 +111,7 @@ abstract class ServiceResource {
     }
     
     $method['parameters'] = array_merge($method['parameters'], $this->stackParameters);
+
     foreach ($parameters as $key => $val) {
       if ($key != 'postBody' && ! isset($method['parameters'][$key])) {
         throw new \GoogleApi\Exception("($name) unknown parameter: '$key'");
