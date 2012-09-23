@@ -9,6 +9,7 @@ Warning: Currently only the following services are working
 * freebase
 * urlshortener
 * plus
+* tasks
 
 Based on:
 * https://github.com/evert/google-api-php-client
@@ -22,7 +23,7 @@ This project was forked made the library compatible with modern techniques like 
 get rid of the global like static config object:
 
 * Replaced the Config class with a non static version which is constructor injected into the classes which use the configuration object.
-* Refactored the Books Service to one class per file
+* Refactored the Services to one class per file with proper namespacing to support PSR-0 autoloading
 * Specified fully qualified classnames for factory keys 
 
 TODO:

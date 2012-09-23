@@ -1,4 +1,6 @@
 <?php
+use GoogleApi\Client;
+
 /*
  * Copyright 2011 Google Inc.
  *
@@ -15,17 +17,19 @@
  * limitations under the License.
  */
 session_start();
-require_once '../../src/apiClient.php';
-require_once '../../src/contrib/apiTasksService.php';
 
-$client = new apiClient();
+require_once '../bootstrap.php';
+
+$config = new GoogleApi\Config();
+$client = new GoogleApi\Client($config);
 // Visit https://code.google.com/apis/console to generate your
 // oauth2_client_id, oauth2_client_secret, and to register your oauth2_redirect_uri.
 // $client->setClientId('insert_your_oauth2_client_id');
 // $client->setClientSecret('insert_your_oauth2_client_secret');
 // $client->setRedirectUri('insert_your_oauth2_redirect_uri');
 // $client->setApplicationName("Tasks_Example_App");
-$tasksService = new apiTasksService($client);
+$client->setApplicationName("Tasks_Example_App");
+$tasksService = new GoogleApi\Contrib\Tasks\Service($client);
 
 if (isset($_REQUEST['logout'])) {
   unset($_SESSION['access_token']);
@@ -56,11 +60,20 @@ if (isset($_GET['code'])) {
   <div id='main'>
 <?php
   $lists = $tasksService->tasklists->listTasklists();
-  foreach ($lists['items'] as $list) {
-    print "<h3>{$list['title']}</h3>";
-    $tasks = $tasksService->tasks->listTasks($list['id']);
-  }
+  foreach ($lists['items'] as $list) : 
+?>  
+<h3><?php echo $list['title']; ?></h3>
+<?php
+$tasks = $tasksService->tasks->listTasks($list['id']);
 ?>
+<ul>
+    <?php foreach($tasks['items'] as $task) : ?>
+    <?php if(! empty($task['title'])) : ?>
+    <li><?php echo $task['title']; ?></li>
+    <?php endif; ?>
+    <?php endforeach; ?>
+</ul>
+<?php endforeach; ?>
   </div>
 </div>
 </body>
