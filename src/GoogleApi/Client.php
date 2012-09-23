@@ -184,7 +184,7 @@ class Client
      */
     public function setAuthClass ($authClassName)
     {
-        self::$auth = new $authClassName();
+        self::$auth = new $authClassName($this->getConfig());
     }
 
     /**

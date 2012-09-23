@@ -16,7 +16,7 @@
  */
 session_start();
 
-require_once '../autoloader.php';
+require_once '../bootstrap.php';
 
 // Visit https://code.google.com/apis/console to
 // generate your client id, client secret, and redirect uri.

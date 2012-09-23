@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once '../autoloader.php';
+require_once '../bootstrap.php';
 
 $config = new \GoogleApi\Config(array('use_objects' => false));
 $client = new \GoogleApi\Client($config);

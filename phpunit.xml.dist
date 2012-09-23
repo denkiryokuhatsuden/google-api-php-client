@@ -6,11 +6,16 @@
          colors="true"
          timeoutForSmallTests="5">
 
-    <testsuites>
-        <testsuite name="google-api-php-client">
-          <directory>tests</directory>
-        </testsuite>
-    </testsuites>
+    
+    <testsuite name="GoogleApi Test Suite">
+        <directory suffix="Test.php">./tests/GoogleApi/Test/</directory>
+        <exclude>./tests/GoogleApi/Test/Auth</exclude>
+        <exclude>./tests/GoogleApi/Test/Cache</exclude>
+        <exclude>./tests/GoogleApi/Test/Contrib</exclude>
+        <exclude>./tests/GoogleApi/Test/IO</exclude>
+        <exclude>./tests/GoogleApi/Test/Service</exclude>
+    </testsuite>
+
 
     <filter>
         <blacklist>

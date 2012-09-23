@@ -16,7 +16,7 @@
  */
 session_start();
 
-require_once '../autoloader.php';
+require_once '../bootstrap.php';
 
 // Include the boilerplate markup.
 include 'interface.html';

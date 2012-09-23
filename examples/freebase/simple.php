@@ -5,7 +5,7 @@
  * @see https://developers.google.com/apis-explorer/#s/freebase/v1/
  */
 
-require_once '../autoloader.php';
+require_once '../bootstrap.php';
 
 $config = new \GoogleApi\Config(array('use_objects' => true));
 $client = new \GoogleApi\Client($config);

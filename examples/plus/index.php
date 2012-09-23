@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-require_once '../autoloader.php';
+require_once '../bootstrap.php';
 
 session_start();
 
