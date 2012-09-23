@@ -2,7 +2,7 @@
 
 <project name="google-api-php-client" default="build">
  <target name="build"
-   depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb"/>
+   depends="prepare,vendors,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdox,phpunit,phpcb"/>
 
  <target name="build-parallel"
    depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
@@ -118,6 +118,12 @@
     <exec executable="phpdox">
         <arg value="-f" />
         <arg path="${basedir}/build/phpdox.xml" />
+    </exec>
+</target>
+
+<target name="vendors" description="Update vendors">
+    <exec executable="${basedir}/composer.phar" failonerror="true">
+        <arg value="install" />
     </exec>
 </target>
 
