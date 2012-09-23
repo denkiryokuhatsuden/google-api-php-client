@@ -3,6 +3,7 @@
 namespace GoogleApi\Contrib\Plus\People;
 
 use GoogleApi\Service\ServiceResource as AbstractServiceResource;
+use GoogleApi\Contrib\Plus\Person;
 
 /**
  * The "people" collection of methods.
@@ -47,7 +48,7 @@ class ServiceResource extends AbstractServiceResource
         ));
         
         if ($this->useObjects()) {
-            return new People\Feed($data);
+            return new Feed($data);
         } else {
             return $data;
         }
@@ -85,7 +86,7 @@ class ServiceResource extends AbstractServiceResource
                 $params
         ));
         if ($this->useObjects()) {
-            return new People\Feed($data);
+            return new Feed($data);
         } else {
             return $data;
         }
@@ -95,15 +96,14 @@ class ServiceResource extends AbstractServiceResource
      * Get a person's profile.
      * (people.get)
      *
-     * @param string $userId
-     *            The ID of the person to get the profile for. The special value
-     *            "me" can be used to indicate the authenticated user.
+     * @param string $userId The ID of the person to get the profile for. The special value
+     *     "me" can be used to indicate the authenticated user.
      * @return Person
      */
     public function get ($userId, $optParams = array())
     {
         $params = array(
-                'userId' => $userId
+            'userId' => $userId
         );
         $params = array_merge($params, $optParams);
         $data = $this->__call('get', array(

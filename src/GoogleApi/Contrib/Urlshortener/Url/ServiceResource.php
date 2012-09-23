@@ -19,19 +19,20 @@ class ServiceResource extends AbstractServiceResource
      * Creates a new short URL.
      * (url.insert)
      *
-     * @param Url $postBody            
+     * @param Url $postBody
+     * @param $optParams [optional]
      * @return Url
      */
     public function insert (Url $postBody, $optParams = array())
     {
         $params = array(
-                'postBody' => $postBody
+            'postBody' => $postBody
         );
         $params = array_merge($params, $optParams);
-        $data = $this->__call('insert', 
-                array(
-                        $params
-                ));
+        $data = $this->__call('insert', array(
+            $params
+        ));
+        
         if ($this->useObjects()) {
             return new Url($data);
         } else {
@@ -70,23 +71,22 @@ class ServiceResource extends AbstractServiceResource
      * Expands a short URL or gets creation time and analytics.
      * (url.get)
      *
-     * @param string $shortUrl
-     *            The short URL, including the protocol.
-     * @param array $optParams
-     *            Optional parameters. Valid optional parameters are listed
-     *            below.
-     *            @opt_param string projection Additional information to return.
+     * @param string $shortUrl The short URL, including the protocol.
+     * @param array $optParams Optional parameters. Valid optional parameters are listed below.
+     *        opt_param string projection Additional information to return.
      * @return Url
      */
     public function get ($shortUrl, $optParams = array())
     {
         $params = array(
-                'shortUrl' => $shortUrl
+            'shortUrl' => $shortUrl
         );
+        
         $params = array_merge($params, $optParams);
         $data = $this->__call('get', array(
                 $params
         ));
+        
         if ($this->useObjects()) {
             return new Url($data);
         } else {
