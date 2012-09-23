@@ -19,7 +19,6 @@ use GoogleApi\Io\HttpRequest;
  * Abstract class for the Authentication in the API client
  * 
  * @author Chris Chabot <chabotc@google.com>
- *        
  */
 abstract class Auth
 {

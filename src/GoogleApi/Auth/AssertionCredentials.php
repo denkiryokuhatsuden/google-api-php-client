@@ -10,6 +10,7 @@
  * KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 namespace GoogleApi\Auth;
 
 use GoogleApi\Service\Utils;
@@ -17,7 +18,9 @@ use GoogleApi\Service\Utils;
 /**
  * Credentials object used for OAuth 2.0 Signed JWT assertion grants.
  *
- * @author Chirag Shah <chirags@google.com>
+ * @category GoogleApi
+ * @package  Auth
+ * @author   Chirag Shah <chirags@google.com>
  */
 class AssertionCredentials
 {
