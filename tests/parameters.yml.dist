@@ -1,0 +1,4 @@
+ioFileCache_directory : /tmp/google-api-php-client/tests
+client_id : 
+client_secret : 
+oauth_test_token : ''

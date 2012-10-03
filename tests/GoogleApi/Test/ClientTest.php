@@ -21,9 +21,16 @@
 
 namespace GoogleApi\Test;
 
+/**
+ * 
+ * @author dag
+ *
+ */
 class ClientTest extends TestCase
 {
-
+    /**
+     * 
+     */
     public function testClient ()
     {
         $client = new \GoogleApi\Client(new \GoogleApi\Config(array()));
@@ -40,6 +47,9 @@ class ClientTest extends TestCase
         $this->assertEquals("{\"access_token\":\"1\"}", $client->getAccessToken());
     }
 
+    /**
+     * 
+     */
     public function testPrepareService ()
     {
         $client = new \GoogleApi\Client(new \GoogleApi\Config(array()));
@@ -75,6 +85,9 @@ class ClientTest extends TestCase
             );
     }
 
+    /**
+     * 
+     */
     public function testSettersGetters ()
     {
         $client = new \GoogleApi\Client(new \GoogleApi\Config(array()));
@@ -84,7 +97,6 @@ class ClientTest extends TestCase
         $client->setApprovalPrompt('force');
         $client->setAccessType('offline');
         
-        //global $apiConfig;
         $this->assertEquals('client1', $client->getConfig()->get('oauth2_client_id'));
         $this->assertEquals('client1secret', $client->getConfig()->get('oauth2_client_secret'));
         
