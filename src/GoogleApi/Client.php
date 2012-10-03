@@ -30,13 +30,13 @@ class Client
      *
      * @var \GoogleApi\Auth\Auth $auth
      */
-    static $auth;
+    public $auth;
 
     /**
      *
      * @var \GoogleApi\Io\Io $io
      */
-    static $io;
+    public $io;
 
     /**
      *
@@ -44,7 +44,7 @@ class Client
      *
      * @var \GoogleApi\Cache\Cache $cache
      */
-    static $cache;
+    public $cache;
 
     /**
      *
@@ -52,7 +52,7 @@ class Client
      *
      * @var boolean $useBatch
      */
-    static $useBatch = false;
+    public $useBatch = false;
 
     /**
      * @var array $scopes
@@ -82,11 +82,11 @@ class Client
         $this->apiConfig = $config;
         
         $cacheClass = $this->apiConfig->get('cacheClass');
-        self::$cache = new $cacheClass($config);
-        $authClass = $this->apiConfig->get('authClass');
-        self::$auth = new $authClass($config);
+        $this->cache = new $cacheClass($config);
         $ioClass = $this->apiConfig->get('ioClass');
-        self::$io = new $ioClass($config);
+        $this->io = new $ioClass($this);
+        $authClass = $this->apiConfig->get('authClass');
+        $this->auth = new $authClass($config, $this->io);
     }
 
     /**
@@ -124,7 +124,7 @@ class Client
     {
         $service = $this->prepareService();
         $this->authenticated = true;
-        return self::$auth->authenticate($service);
+        return $this->auth->authenticate($service);
     }
 
     /**
@@ -174,7 +174,7 @@ class Client
         if ($accessToken == null || 'null' == $accessToken) {
             $accessToken = null;
         }
-        self::$auth->setAccessToken($accessToken);
+        $this->auth->setAccessToken($accessToken);
     }
 
     /**
@@ -184,7 +184,7 @@ class Client
      */
     public function setAuthClass ($authClassName)
     {
-        self::$auth = new $authClassName($this->getConfig());
+        $this->auth = new $authClassName($this->getConfig(), $this->getIo());
     }
 
     /**
@@ -195,7 +195,7 @@ class Client
     public function createAuthUrl ()
     {
         $service = $this->prepareService();
-        return self::$auth->createAuthUrl($service['scope']);
+        return $this->auth->createAuthUrl($service['scope']);
     }
 
     /**
@@ -208,7 +208,7 @@ class Client
      */
     public function getAccessToken ()
     {
-        $token = self::$auth->getAccessToken();
+        $token = $this->auth->getAccessToken();
         return (null == $token || 'null' == $token) ? null : $token;
     }
 
@@ -220,7 +220,7 @@ class Client
      */
     public function setDeveloperKey ($developerKey)
     {
-        self::$auth->setDeveloperKey($developerKey);
+        $this->auth->setDeveloperKey($developerKey);
     }
 
     /**
@@ -231,7 +231,7 @@ class Client
      */
     public function setState ($state)
     {
-        self::$auth->setState($state);
+        $this->auth->setState($state);
     }
 
     /**
@@ -244,7 +244,7 @@ class Client
      */
     public function setAccessType ($accessType)
     {
-        self::$auth->setAccessType($accessType);
+        $this->auth->setAccessType($accessType);
     }
 
     /**
@@ -257,7 +257,7 @@ class Client
      */
     public function setApprovalPrompt ($approvalPrompt)
     {
-        self::$auth->setApprovalPrompt($approvalPrompt);
+        $this->auth->setApprovalPrompt($approvalPrompt);
     }
 
     /**
@@ -278,7 +278,7 @@ class Client
     public function setClientId ($clientId)
     {
         $this->apiConfig->set('oauth2_client_id', $clientId);
-        self::$auth->clientId = $clientId;
+        $this->auth->clientId = $clientId;
     }
 
     /**
@@ -289,7 +289,7 @@ class Client
     public function setClientSecret ($clientSecret)
     {
         $this->apiConfig->set('oauth2_client_secret', $clientSecret);
-        self::$auth->clientSecret = $clientSecret;
+        $this->auth->clientSecret = $clientSecret;
     }
 
     /**
@@ -300,7 +300,7 @@ class Client
     public function setRedirectUri ($redirectUri)
     {
         $this->apiConfig->set('oauth2_redirect_uri', $redirectUri);
-        self::$auth->redirectUri = $redirectUri;
+        $this->auth->redirectUri = $redirectUri;
     }
 
     /**
@@ -311,7 +311,7 @@ class Client
      */
     public function refreshToken ($refreshToken)
     {
-        self::$auth->refreshToken($refreshToken);
+        $this->auth->refreshToken($refreshToken);
     }
 
     /**
@@ -328,7 +328,7 @@ class Client
      */
     public function revokeToken ($token = null)
     {
-        self::$auth->revokeToken($token);
+        $this->auth->revokeToken($token);
     }
 
     /**
@@ -345,7 +345,7 @@ class Client
      */
     public function verifyIdToken ($token = null)
     {
-        return self::$auth->verifyIdToken($token);
+        return $this->auth->verifyIdToken($token);
     }
 
     /**
@@ -355,7 +355,7 @@ class Client
      */
     public function setAssertionCredentials (Auth\AssertionCredentials $creds)
     {
-        self::$auth->setAssertionCredentials($creds);
+        $this->auth->setAssertionCredentials($creds);
     }
 
     /**
@@ -396,16 +396,21 @@ class Client
      */
     public function setUseBatch ($useBatch)
     {
-        self::$useBatch = $useBatch;
+        $this->useBatch = (bool)$useBatch;
+    }
+    
+    public function getUseBatch()
+    {
+        return $this->useBatch;
     }
 
     /**
      *
      * @return Auth\Auth the implementation of Auth\Auth
      */
-    public static function getAuth ()
+    public  function getAuth ()
     {
-        return Client::$auth;
+        return $this->auth;
     }
 
     /**
@@ -414,17 +419,18 @@ class Client
      *
      * @return Io\Io the implementation of Io\Io.
      */
-    public static function getIo ()
+    public  function getIo ()
     {
-        return Client::$io;
+        return $this->io;
     }
 
     /**
      *
      * @return \GoogleApi\Cache\Cache the implementation of Cache\Cache.
      */
-    public function getCache() {
-    return Client::$cache;
-  }
+    public function getCache() 
+    {
+        return $this->cache;
+    }
 }
 

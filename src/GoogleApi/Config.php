@@ -18,11 +18,9 @@ namespace GoogleApi;
  * "global" and use an OO method.
  *
  * @author Asaf David <asafdav@gmail.com>
- *        
  */
 class Config
 {
-
     protected $apiConfig = array();
 
     /**
@@ -131,7 +129,7 @@ class Config
                 )
             )
         );
-        
+
         if (! empty($config)) {
             $this->apiConfig = array_merge($this->apiConfig, $config);
         }

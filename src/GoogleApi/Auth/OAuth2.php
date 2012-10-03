@@ -68,9 +68,9 @@ class OAuth2 extends Auth
      *  
      * @param unknown_type $config
      */
-    public function __construct ($config)
+    public function __construct ($config, $io)
     {
-        parent::__construct($config);
+        parent::__construct($config, $io);
         
         if (! $this->apiConfig->has('developer_key')) {
             $this->developerKey = $this->apiConfig->get('developer_key');
@@ -93,8 +93,7 @@ class OAuth2 extends Auth
         }
         
         if (! $this->apiConfig->has('oauth2_approval_prompt')) {
-            $this->approvalPrompt = $this->apiConfig->get(
-                    'oauth2_approval_prompt');
+            $this->approvalPrompt = $this->apiConfig->get('oauth2_approval_prompt');
         }
     }
 
@@ -108,8 +107,7 @@ class OAuth2 extends Auth
         if (isset($_GET['code'])) {
             // We got here from the redirect from a successful authorization
             // grant, fetch the access token
-            
-            $request = Client::$io->makeRequest(
+            $request = $this->io->makeRequest(
                 new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), array(
                         'code' => $_GET['code'],
                         'grant_type' => 'authorization_code',
@@ -129,9 +127,10 @@ class OAuth2 extends Auth
                          $decodedResponse['error']) {
                     $response = $decodedResponse['error'];
                 }
+
                 throw new Exception(
-                        "Error fetching OAuth2 access token, message: '$response'", 
-                        $request->getResponseHttpCode());
+                    "Error fetching OAuth2 access token, message: '$response'",  $request->getResponseHttpCode()
+                );
             }
         }
         
@@ -178,6 +177,7 @@ class OAuth2 extends Auth
         if (! isset($accessToken['access_token'])) {
             throw new Exception("Invalid token format");
         }
+
         $this->accessToken = $accessToken;
     }
 
@@ -268,13 +268,12 @@ class OAuth2 extends Auth
      */
     public function refreshToken ($refreshToken)
     {
-        $this->refreshTokenRequest(
-            array(
-                'client_id' => $this->clientId,
-                'client_secret' => $this->clientSecret,
-                'refresh_token' => $refreshToken,
-                'grant_type' => 'refresh_token'
-            ));
+        $this->refreshTokenRequest(array(
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+            'refresh_token' => $refreshToken,
+            'grant_type' => 'refresh_token'
+        ));
     }
 
     /**
@@ -303,8 +302,8 @@ class OAuth2 extends Auth
      */
     private function refreshTokenRequest ($params)
     {
-        $http = new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), $params);
-        $request = Client::$io->makeRequest($http);
+        $http = new HttpRequest(self::OAUTH2_TOKEN_URI, 'POST', array(), $params, $this->apiConfig);
+        $request = $this->io->makeRequest($http);
         
         $code = $request->getResponseHttpCode();
         $body = $request->getResponseBody();
@@ -342,7 +341,7 @@ class OAuth2 extends Auth
             $token = $this->accessToken['access_token'];
         }
         $request = new HttpRequest(self::OAUTH2_REVOKE_URI, 'POST', array(), "token=$token");
-        $response = Client::$io->makeRequest($request);
+        $response = $this->io->makeRequest($request);
         $code = $response->getResponseHttpCode();
         if ($code == 200) {
             $this->accessToken = null;
@@ -364,7 +363,7 @@ class OAuth2 extends Auth
     private function getFederatedSignOnCerts ()
     {
         // This relies on makeRequest caching certificate responses.
-        $request = Client::$io->makeRequest(
+        $request = $this->io->makeRequest(
                 new HttpRequest(self::OAUTH2_FEDERATED_SIGNON_CERTS_URL));
         if ($request->getResponseHttpCode() == 200) {
             $certs = json_decode($request->getResponseBody(), true);

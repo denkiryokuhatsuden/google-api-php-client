@@ -1,4 +1,7 @@
-/.buildpath
-/.project
-/.settings
-/vendor
+.buildpath
+.project
+.settings
+vendor/
+build/coverage/
+build/logs/
+tests/parameters.yml

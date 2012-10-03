@@ -23,10 +23,12 @@ use GoogleApi\Io\HttpRequest;
 abstract class Auth
 {
     protected $apiConfig = null;
+    protected $io = null;
 
-    public function __construct ($config)
+    public function __construct ($config, $io)
     {
         $this->apiConfig = $config;
+        $this->io = $io;
     }
 
     abstract public function authenticate ($service);

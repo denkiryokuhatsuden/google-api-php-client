@@ -22,10 +22,17 @@ use GoogleApi\Client;
  */
 class CurlIO implements IO
 {
+    protected $client = null;
+    
     const CONNECTION_ESTABLISHED = "HTTP/1.0 200 Connection established\r\n\r\n";
 
     const FORM_URLENCODED = 'application/x-www-form-urlencoded';
 
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
+    
     private static $ENTITY_HTTP_METHODS = array(
             "POST" => null,
             "PUT" => null
@@ -63,7 +70,7 @@ class CurlIO implements IO
      */
     public function authenticatedRequest (HttpRequest $request)
     {
-        $request = Client::$auth->sign($request);
+        $request = $this->client->getAuth()->sign($request);
         return $this->makeRequest($request);
     }
 
@@ -189,7 +196,7 @@ class CurlIO implements IO
     {
         // Determine if the request is cacheable.
         if (CacheParser::isResponseCacheable($request)) {
-            Client::$cache->set($request->getCacheKey(), $request);
+            $this->client->getCache()->set($request->getCacheKey(), $request);
             return true;
         }
         
@@ -209,7 +216,7 @@ class CurlIO implements IO
             false;
         }
         
-        return Client::$cache->get($request->getCacheKey());
+        return $this->client->getCache()->get($request->getCacheKey());
     }
 
     /**

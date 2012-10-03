@@ -34,7 +34,9 @@ use GoogleApi\Config;
  */
 abstract class ServiceResource
 {
-    // Valid query parameters that work, but don't appear in discovery.
+    /**
+     * @var array Valid query parameters that work, but don't appear in discovery.
+     */
     private $stackParameters = array(
         'alt' => array(
             'type' => 'string',
@@ -85,22 +87,22 @@ abstract class ServiceResource
     /**
      * @var Service $service
      */
-    private $service;
+    protected $service;
 
     /**
      * @var string $serviceName
      */
-    private $serviceName;
+    protected $serviceName;
 
     /**
      * @var string $resourceName
      */
-    private $resourceName;
+    protected $resourceName;
 
     /**
      * @var array $methods
      */
-    private $methods;
+    protected $methods;
 
     /**
      * @param unknown_type $service
@@ -177,9 +179,9 @@ abstract class ServiceResource
             foreach ($method['parameters'] as $paramName => $paramSpec) {
                 if (isset($paramSpec['required']) && $paramSpec['required'] &&
                          ! isset($parameters[$paramName])) {
-                    throw new \GoogleApi\Exception(
-                            "($name) missing required param: '$paramName'");
+                    throw new \GoogleApi\Exception("($name) missing required param: '$paramName'");
                 }
+                
                 if (isset($parameters[$paramName])) {
                     $value = $parameters[$paramName];
                     $parameters[$paramName] = $paramSpec;
@@ -232,8 +234,10 @@ abstract class ServiceResource
             $httpRequest->setRequestHeaders($contentTypeHeader);
         }
         
-        $httpRequest = Client::$auth->sign($httpRequest);
-        if (Client::$useBatch) {
+        $client = $this->service->getClient();
+
+        $httpRequest = $client->getAuth()->sign($httpRequest);
+        if ($client->getUseBatch()) {
             return $httpRequest;
         }
         
@@ -243,9 +247,12 @@ abstract class ServiceResource
             return $httpRequest;
         }
         
-        return REST::execute($httpRequest);
+        return REST::execute($httpRequest, $client->getIo());
     }
 
+    /**
+     * 
+     */
     protected function useObjects ()
     {
         return $this->service->getClient()
@@ -253,6 +260,8 @@ abstract class ServiceResource
             ->get('use_objects', false);
     }
 
+    /**
+     */
     protected function stripNull (&$o)
     {
         $o = (array) $o;

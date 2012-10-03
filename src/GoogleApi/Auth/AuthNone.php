@@ -30,9 +30,9 @@ class AuthNone extends Auth
 {
     public $key = null;
 
-    public function __construct ($config)
+    public function __construct ($config, $io)
     {
-        parent::__construct($config);
+        parent::__construct($config, $io);
         
         if ($this->apiConfig->has('developer_key')) {
             $this->setDeveloperKey($this->apiConfig->get('developer_key'));

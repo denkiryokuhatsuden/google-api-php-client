@@ -27,12 +27,13 @@ class ServiceResource extends AbstractServiceResource
     public function insert (TaskList $postBody, $optParams = array())
     {
         $params = array(
-                'postBody' => $postBody
+            'postBody' => $postBody
         );
+        
         $params = array_merge($params, $optParams);
-        $data = $this->__call('insert', array(
-                $params
-        ));
+
+        $data = $this->__call('insert', array($params));
+        
         if ($this->useObjects()) {
             return new TaskList($data);
         } else {
@@ -44,19 +45,18 @@ class ServiceResource extends AbstractServiceResource
      * Returns the authenticated user's specified task list.
      * (tasklists.get)
      *
-     * @param string $tasklist
-     *            Task list identifier.
+     * @param string $tasklist Task list identifier.
      * @return TaskList
      */
     public function get ($tasklist, $optParams = array())
     {
         $params = array(
-                'tasklist' => $tasklist
+            'tasklist' => $tasklist
         );
+        
         $params = array_merge($params, $optParams);
-        $data = $this->__call('get', array(
-                $params
-        ));
+        $data = $this->__call('get', array($params));
+        
         if ($this->useObjects()) {
             return new TaskList($data);
         } else {
@@ -68,25 +68,20 @@ class ServiceResource extends AbstractServiceResource
      * Returns all the authenticated user's task lists.
      * (tasklists.list)
      *
-     * @param array $optParams
-     *            Optional parameters. Valid optional parameters are listed
-     *            below.
-     *
-     *            @opt_param string pageToken Token specifying the result page
-     *            to return. Optional.
-     *            @opt_param string maxResults Maximum number of task lists
-     *            returned on one page. Optional. The default is 100.
+     * @param array $optParams Optional parameters. Valid optional parameters are listed below.
+     * @opt_param string pageToken Token specifying the result page to return. Optional.
+     * @opt_param string maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
+     * 
      * @return TaskLists
      */
     public function listTasklists ($optParams = array())
     {
         $params = array();
         $params = array_merge($params, $optParams);
-        $data = $this->__call('list', array(
-                $params
-        ));
+        $data = $this->__call('list', array($params));
+        
         if ($this->useObjects()) {
-            return new Task\Lists($data);
+            return new TaskLists($data);
         } else {
             return $data;
         }

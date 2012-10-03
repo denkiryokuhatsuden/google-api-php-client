@@ -29,6 +29,8 @@ use GoogleApi\External\URITemplateParser;
 class REST
 {
 
+    
+    
     /**
      * Executes a ServiceRequest using a RESTful call by transforming it into
      * an HttpRequest, and executed via IO::authenticatedRequest().
@@ -38,9 +40,9 @@ class REST
      * @throws Service\Exception on server side error (ie: not authenticated,
      *         invalid or malformed post body, invalid url)
      */
-    static public function execute (HttpRequest $req)
+    static public function execute (HttpRequest $req, $io)
     {
-        $httpRequest = Client::$io->makeRequest($req);
+        $httpRequest = $io->makeRequest($req);
         $decodedResponse = self::decodeHttpResponse($httpRequest);
         
         // FIXME currently everything is wrapped in a data envelope, but
