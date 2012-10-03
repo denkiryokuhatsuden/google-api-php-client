@@ -10,12 +10,16 @@ Warning: Currently only the following services are working
 * urlshortener
 * plus
 * tasks
+* analytics
 
 Based on:
 * https://github.com/evert/google-api-php-client
 
 Current version is hosted here:
 * https://github.com/gh0zt/google-api-php-client
+
+A Composer package of the latest build can be found at packagist
+http://packagist.org/packages/dag/google-api-php-client 
 
 ## Fork information
 
@@ -28,7 +32,6 @@ get rid of the global like static config object:
 
 TODO:
 * Refactore all other services
-* Replace all static calls to Config
 * Replace config usage in Models which should not be config aware. (e.g GoogleApi\Service\Model)
 
 The existing documentation applies, just keep in mind that instead of class

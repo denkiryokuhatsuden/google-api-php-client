@@ -28,9 +28,6 @@ use GoogleApi\External\URITemplateParser;
  */
 class REST
 {
-
-    
-    
     /**
      * Executes a ServiceRequest using a RESTful call by transforming it into
      * an HttpRequest, and executed via IO::authenticatedRequest().

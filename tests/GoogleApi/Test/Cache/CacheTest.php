@@ -19,7 +19,9 @@
  * under the License.
  */
 
-namespace GoogleApi\Test;
+namespace GoogleApi\Test\Cache;
+
+use GoogleApi\Test\TestCase;
 
 class CacheTest extends TestCase
 {

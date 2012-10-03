@@ -1,2 +1,10 @@
 These tests depend on PHPUnit, see
 http://www.phpunit.de/manual/current/en/installation.html for more instructions
+
+Copy the parameters.yml.dist file as parameters.yml and enter your api credentials
+which can be obtained from https://code.google.com/apis/console/
+Make sure you create a "Client ID for installed applications" and enter
+urn:ietf:wg:oauth:2.0:oob as your Redirect URI
+
+Use requestAuthToken.php to generate a authentification token for the unit test.
+Update the parameters.yml with the generated token.

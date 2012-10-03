@@ -13,7 +13,6 @@
         <exclude>./tests/GoogleApi/Test/Contrib/Adsense</exclude>
         <exclude>./tests/GoogleApi/Test/Contrib/Pagespeed</exclude>
         <exclude>./tests/GoogleApi/Test/Contrib/Plus</exclude>
-        <exclude>./tests/GoogleApi/Test/IO</exclude>
         <exclude>./tests/GoogleApi/Test/Service</exclude>
     </testsuite>
 
