@@ -1,9 +1,10 @@
 <?php
-require_once '../../src/apiClient.php';
-require_once '../../src/contrib/apiAnalyticsService.php';
+
+require_once '../bootstrap.php';
 session_start();
 
-$client = new apiClient();
+$config = new \GoogleApi\Config(array('use_objects' => false));
+$client = new \GoogleApi\Client($config);
 $client->setApplicationName("Google Analytics PHP Starter Application");
 
 // Visit https://code.google.com/apis/console?api=analytics to generate your
@@ -12,7 +13,7 @@ $client->setApplicationName("Google Analytics PHP Starter Application");
 // $client->setClientSecret('insert_your_oauth2_client_secret');
 // $client->setRedirectUri('insert_your_oauth2_redirect_uri');
 // $client->setDeveloperKey('insert_your_developer_key');
-$service = new apiAnalyticsService($client);
+$service = new \GoogleApi\Contrib\Analytics\Service($client);
 
 if (isset($_GET['logout'])) {
   unset($_SESSION['token']);
