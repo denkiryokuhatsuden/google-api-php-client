@@ -10,11 +10,9 @@
     <testsuite name="GoogleApi Test Suite">
         <directory suffix="Test.php">./tests/GoogleApi/Test/</directory>
         <exclude>./tests/GoogleApi/Test/Auth</exclude>
-        <exclude>./tests/GoogleApi/Test/Cache</exclude>
         <exclude>./tests/GoogleApi/Test/Contrib/Adsense</exclude>
         <exclude>./tests/GoogleApi/Test/Contrib/Pagespeed</exclude>
         <exclude>./tests/GoogleApi/Test/Contrib/Plus</exclude>
-        <exclude>./tests/GoogleApi/Test/Contrib/Urlshortener</exclude>
         <exclude>./tests/GoogleApi/Test/IO</exclude>
         <exclude>./tests/GoogleApi/Test/Service</exclude>
     </testsuite>

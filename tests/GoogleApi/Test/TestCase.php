@@ -13,12 +13,12 @@ use Symfony\Component\Yaml\Yaml;
 class TestCase extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var apiClient
+     * @var GoogleApi\Client
      */
     public $client;
     
     /**
-     * @var unknown_type
+     * @var GoogleApi\Config
      */
     public $config;
 
