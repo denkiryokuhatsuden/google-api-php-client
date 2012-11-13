@@ -11,6 +11,7 @@ Warning: Currently only the following services are working
 * plus
 * tasks
 * analytics
+* prediction (so far only predict method is working)
 
 Based on:
 * https://github.com/evert/google-api-php-client

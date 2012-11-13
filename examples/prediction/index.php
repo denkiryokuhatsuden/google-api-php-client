@@ -16,23 +16,25 @@
  * limitations under the License.
  */
 
-require_once 'apiClient.php';
-require_once 'apiPredictionService.php';
+require_once '../bootstrap.php';
 
 session_start();
 
-$client = new apiClient();
+
+$config = new \GoogleApi\Config(array('use_objects' => false));
+
+$client = new \GoogleApi\Client($config);
 $client->setApplicationName("Google Prediction API PHP Starter Application");
 // Visit https://code.google.com/apis/console/?api=prediction to generate 
 // your oauth2_client_id, oauth2_client_secret, and to register your 
 // oauth2_redirect_uri.
-// $client->setClientId('insert_your_oauth2_client_id');
-// $client->setClientSecret('insert_your_oauth2_client_secret');
-// $client->setRedirectUri('insert_your_oauth2_redirect_uri');
-// $client->setDeveloperKey('insert_your_developer_key');
+//$client->setClientId('insert_your_oauth2_client_id');
+//$client->setClientSecret('insert_your_oauth2_client_secret');
+//$client->setRedirectUri('insert_your_oauth2_redirect_uri');
+//$client->setDeveloperKey('insert_your_developer_key');
 $client->setScopes(array('https://www.googleapis.com/auth/prediction'));
 
-$predictionService = new apiPredictionService($client);
+$predictionService = new \GoogleApi\Contrib\Prediction\Service($client);
 $trainedmodels = $predictionService->trainedmodels;
 
 if (isset($_REQUEST['logout'])) {
@@ -78,11 +80,11 @@ if ($client->getAccessToken()) {
   } else {
     print "<a class='login' href='?logout'>Logout</a>";
     /* prediction logic follows...  */
-    $id = "languages";
+    $id = "language";
     $predictionText = "Je suis fatigue";
-    $predictionData = new InputInput();
+    $predictionData = new \GoogleApi\Contrib\Prediction\Input\Input();
     $predictionData->setCsvInstance(array($predictionText));
-    $input = new Input();
+    $input = new \GoogleApi\Contrib\Prediction\Input();
     $input->setInput($predictionData);
     $result = $predictionService->trainedmodels->predict($id, $input);
     print("</div><br><br><h2>Prediction Result:</h2>");
