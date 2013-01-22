@@ -1,5 +1,5 @@
 {
-    "name": "dag/google-api-php-client",
+    "name": "denkiryokuhatsuden/google-api-php-client",
     "type": "library",
     "description": "Google API library for PHP",
     "keywords": ["google","gdata"],
